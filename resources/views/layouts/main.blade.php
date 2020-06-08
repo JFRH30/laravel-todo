@@ -22,6 +22,7 @@
     </nav>
 
     <div class="container">
+        @include('error.alert')
         @yield('content')
     </div>
 
