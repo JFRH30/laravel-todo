@@ -34,4 +34,12 @@ class User extends Authenticatable
     protected $dates = [
         'birthday', 'created_at', 'updated_at'
     ];
+
+    /**
+     * Get tasks associated to the user.
+     */
+    public function tasks()
+    {
+        return $this->hasMany('App\Models\Task');
+    }
 }

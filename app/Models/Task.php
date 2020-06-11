@@ -28,4 +28,11 @@ class Task extends Model
         'created_at', 'updated_at', 'due_date'
     ];
 
+    /**
+     * Get user associated to a task.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

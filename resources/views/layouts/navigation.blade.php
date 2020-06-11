@@ -9,6 +9,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="login-nav">
+
             <ul class="navbar-nav ml-auto">
                 @if (!Auth::check())
                 <li class="nav-item">
@@ -18,6 +19,9 @@
                     <a href="{{ url('register') }}" class="nav-link">Register</a>
                 </li>
             @else
+                <li class="nav-item">
+                    <a href="{{ url('task') }}" class="nav-link">Todo List</a>
+                </li>
                 <li class="nav-item">
                     <form id="logout-form" action="{{ url('logout') }}" method="POST">
                         {{ csrf_field() }}

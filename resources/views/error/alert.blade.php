@@ -3,7 +3,7 @@
         <strong>Whoops! Something went wrong!</strong>
         <br>
         <small>
-            You should check in on some of those fields below.
+            You should check the error(s) below.
         </small>
         <ul>
             @foreach ($errors->all() as $error)

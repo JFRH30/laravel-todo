@@ -25,6 +25,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary"> Update Task</button>
+                <a href="{{ url('task') }}" class="btn btn-outline-danger">Cancel</a>
             </form>
         </div>
     </div>

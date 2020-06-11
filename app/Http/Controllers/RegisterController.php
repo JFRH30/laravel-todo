@@ -21,12 +21,12 @@ class RegisterController extends Controller
             'last_name' => 'required',
             'birthdate' => 'required',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         if ($validator->fails()) {
             return redirect()
-                ->withInput()
+                ->back()
                 ->withErrors($validator);
         }
 
