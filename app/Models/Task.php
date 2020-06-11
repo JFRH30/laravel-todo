@@ -10,7 +10,7 @@ class Task extends Model
     /**
      * The table associated with the model.
      */
-    protected $table = 'task';
+    protected $table = 'tasks';
 
     /**
      * This update the value of 'complete'.
