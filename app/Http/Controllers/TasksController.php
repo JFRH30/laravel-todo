@@ -11,10 +11,9 @@ class TasksController extends Controller
 
     public function index()
     {
-        return view('task', ['tasks' => Task::
-        orderBy('due_date', 'desc')->
-        orderBy('created_at', 'desc')->
-        get()]);
+        return view('pages.task.index', [
+            'tasks' => Task::orderBy('due_date', 'desc')->orderBy('created_at', 'desc')->get()
+        ]);
     }
 
     public function store(Request $request)
@@ -40,7 +39,7 @@ class TasksController extends Controller
 
     public function edit($id)
     {
-        return view('edit-task', ['task' => Task::findOrFail($id)]);
+        return view('pages.task.edit', ['task' => Task::findOrFail($id)]);
     }
 
     public function update(Request $request, $id)

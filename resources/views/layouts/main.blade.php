@@ -13,15 +13,8 @@
         crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container">
-            <div class="nav-header">
-                <span class="navbar-brand h1">All Todo's</span>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
+    @include('layouts.navigation')
+    <div class="container pt-3">
         @include('error.alert')
         @yield('content')
     </div>

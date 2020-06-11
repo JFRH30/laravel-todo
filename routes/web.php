@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +12,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'TasksController@index');
+// Welcome Page
+Route::get('/', 'PagesController@showWelcome');
+
+// Login Page
+Route::get('login', 'LoginController@index');
+Route::post('login', 'LoginController@authenticate');
+Route::post('logout', 'LoginController@logout');
+
+
+// Register Page
+Route::get('register', 'RegisterController@index');
+Route::post('register', 'RegisterController@store');
+
+// Task Page
+Route::get('task', 'TasksController@index');
 Route::post('task', 'TasksController@store');
 Route::delete('task/{id}', 'TasksController@destroy');
 Route::get('task/{id}/edit', 'TasksController@edit');

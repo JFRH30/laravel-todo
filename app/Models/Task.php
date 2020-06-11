@@ -21,6 +21,11 @@ class Task extends Model
         $this->save();
     }
 
-    protected $dates = ['created_at', 'updated_at', 'due_date'];
+    /**
+     * The attribute that should be mutated to dates.
+     */
+    protected $dates = [
+        'created_at', 'updated_at', 'due_date'
+    ];
 
 }
