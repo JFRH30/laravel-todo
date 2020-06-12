@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PagesController@showWelcome');
 
 // Login Page
-Route::get('login', 'LoginController@index')->name('login');
-Route::post('login', 'LoginController@authenticate');
-Route::post('logout', 'LoginController@logout');
+Route::get('login', 'LoginController@index')->name('login')->middleware('guest');
+Route::post('login', 'LoginController@authenticate')->middleware('guest');
+Route::post('logout', 'LoginController@logout')->middleware('auth');
 
 
 // Register Page
-Route::get('register', 'RegisterController@index');
-Route::post('register', 'RegisterController@store');
+Route::get('register', 'RegisterController@index')->middleware('guest');
+Route::post('register', 'RegisterController@store')->middleware('guest');
 
 // Task Page
 Route::get('task', 'TasksController@index')->middleware('auth');
