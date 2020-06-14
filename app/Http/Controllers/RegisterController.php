@@ -17,10 +17,10 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
             'birthdate' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users',
             'password' => 'required',
         ]);
 

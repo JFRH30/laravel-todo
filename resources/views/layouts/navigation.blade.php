@@ -20,6 +20,12 @@
                 </li>
             @else
                 <li class="nav-item">
+                    <a href="{{ url('appointment') }}" class="nav-link">Appointments</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('contact') }}" class="nav-link">Contacts</a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ url('task') }}" class="nav-link">Todo List</a>
                 </li>
                 <li class="nav-item">

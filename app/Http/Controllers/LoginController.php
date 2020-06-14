@@ -29,7 +29,7 @@ class LoginController extends Controller
         }
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('task');
+            return redirect()->intended('home');
         }
 
         return redirect()->back()->withErrors(['login_failed' => 'Please check your credentials.']);

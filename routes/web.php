@@ -12,14 +12,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Welcome Page
+// Pre-Login Page
 Route::get('/', 'PagesController@showWelcome');
+
+// Post-Login Page
+Route::get('home', 'PagesController@showHome')->middleware('auth');
 
 // Login Page
 Route::get('login', 'LoginController@index')->name('login')->middleware('guest');
 Route::post('login', 'LoginController@authenticate')->middleware('guest');
 Route::post('logout', 'LoginController@logout')->middleware('auth');
-
 
 // Register Page
 Route::get('register', 'RegisterController@index')->middleware('guest');
@@ -32,3 +34,9 @@ Route::delete('task/{id}', 'TasksController@destroy')->middleware('auth');
 Route::get('task/{id}/edit', 'TasksController@edit')->middleware('auth');
 Route::put('task/{id}/mark', 'TasksController@mark')->middleware('auth');
 Route::put('task/{id}/update', 'TasksController@update')->middleware('auth');
+
+// Contact Page
+Route::get('contact', 'ContactController@index');
+
+// Appointment Page
+Route::get('appointment', 'AppointmentController@index');
