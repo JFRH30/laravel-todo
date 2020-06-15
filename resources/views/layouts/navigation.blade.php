@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
         <div class="nav-header">
             <span class="navbar-brand h1">Exercise Project</span>
@@ -13,25 +13,25 @@
             <ul class="navbar-nav ml-auto">
                 @if (!Auth::check())
                 <li class="nav-item">
-                    <a href="{{ url('login') }}" class="nav-link">Login</a>
+                    <a href="{{ url('login') }}" class="nav-link">LOGIN</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('register') }}" class="nav-link">Register</a>
+                    <a href="{{ url('register') }}" class="nav-link">REGISTER</a>
                 </li>
             @else
                 <li class="nav-item">
-                    <a href="{{ url('appointment') }}" class="nav-link">Appointments</a>
+                    <a href="{{ url('appointment') }}" class="nav-link">APPOINTMENT</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('contact') }}" class="nav-link">Contacts</a>
+                    <a href="{{ url('contact') }}" class="nav-link">CONTACTS</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('task') }}" class="nav-link">Todo List</a>
+                    <a href="{{ url('task') }}" class="nav-link">TODO LIST</a>
                 </li>
                 <li class="nav-item">
                     <form id="logout-form" action="{{ url('logout') }}" method="POST">
                         {{ csrf_field() }}
-                        <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit()" class="nav-link">Logout</a>
+                        <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit()" class="nav-link">LOGOUT</a>
                     </form>
                 </li>
             @endif

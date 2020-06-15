@@ -1,5 +1,5 @@
 @extends('layouts.main')
 
 @section('content')
-    This is appoinment.
+    This is content
 @endsection
