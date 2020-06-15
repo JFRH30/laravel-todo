@@ -10,4 +10,24 @@ class AppointmentController extends Controller
     {
         return view('pages.appointment.index');
     }
+
+    public function store(Request $request)
+    {
+
+    }
+
+    public function edit($id)
+    {
+
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function destroy($id)
+    {
+
+    }
 }

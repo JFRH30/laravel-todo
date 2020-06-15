@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Update task')
+
 @section('content')
     <div class="card offset-md-3 col-12 col-md-6 mt-3">
         <div class="card-body">

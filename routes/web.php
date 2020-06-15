@@ -12,31 +12,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Pre-Login Page
-Route::get('/', 'PagesController@showWelcome');
-
-// Post-Login Page
-Route::get('home', 'PagesController@showHome')->middleware('auth');
-
 // Login Page
-Route::get('login', 'LoginController@index')->name('login')->middleware('guest');
-Route::post('login', 'LoginController@authenticate')->middleware('guest');
-Route::post('logout', 'LoginController@logout')->middleware('auth');
 
-// Register Page
-Route::get('register', 'RegisterController@index')->middleware('guest');
-Route::post('register', 'RegisterController@store')->middleware('guest');
 
-// Task Page
-Route::get('task', 'TasksController@index')->middleware('auth');
-Route::post('task', 'TasksController@store')->middleware('auth');
-Route::delete('task/{id}', 'TasksController@destroy')->middleware('auth');
-Route::get('task/{id}/edit', 'TasksController@edit')->middleware('auth');
-Route::put('task/{id}/mark', 'TasksController@mark')->middleware('auth');
-Route::put('task/{id}/update', 'TasksController@update')->middleware('auth');
+// Pre-Login Routes
+Route::get('/', 'PagesController@showWelcome')->name('welcome');
+Route::middleware('guest')->group(function() {
 
-// Contact Page
-Route::get('contact', 'ContactController@index');
+    // Login
+    Route::get('login', 'LoginController@index')->name('login');
+    Route::post('login', 'LoginController@authenticate')->name('authenticate');
 
-// Appointment Page
-Route::get('appointment', 'AppointmentController@index');
+    // Register
+    Route::get('register', 'RegisterController@index')->name('register');
+    Route::post('register', 'RegisterController@store')->name('register.store');
+});
+
+// Post-Login Routes
+Route::middleware('auth')->group(function() {
+
+    // Home
+    Route::get('home', 'PagesController@showHome')->name('home');
+
+    // Logout
+    Route::post('logout', 'LoginController@logout')->name('logout');
+
+    // Appointment
+    Route::resource('appointment', 'AppointmentController')->except([
+        'create', 'show'
+    ]);
+
+    // Contact
+    Route::resource('contact', 'ContactController')->except([
+        'create', 'show'
+    ]);
+
+    // Task
+    Route::resource('task', 'TasksController')->except([
+        'create', 'show'
+    ]);
+    Route::put('task/{task}/mark', 'TasksController@mark')->name('task.mark');
+});

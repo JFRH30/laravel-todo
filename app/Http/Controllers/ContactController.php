@@ -10,4 +10,24 @@ class ContactController extends Controller
     {
         return view('pages.contact.index');
     }
+
+    public function store(Request $request)
+    {
+
+    }
+
+    public function edit($id)
+    {
+
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function destroy($id)
+    {
+
+    }
 }

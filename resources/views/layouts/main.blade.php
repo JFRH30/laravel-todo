@@ -17,9 +17,12 @@
 </head>
 <body>
     @include('layouts.navigation')
-    <div class="container pt-3">
+    <div class="container">
+        <h1>
+            @yield('title', 'Title')
+        </h1>
         @include('error.alert')
-        @yield('content')
+        @yield('content', 'Page content here')
     </div>
 
     {{-- Bootstrap JS --}}

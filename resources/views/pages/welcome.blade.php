@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Landing Page')
+
 @section('content')
- <h1>This page is for pre-login.</h1>
+ <h3>This page is for pre-login.</h3>
 @endsection
