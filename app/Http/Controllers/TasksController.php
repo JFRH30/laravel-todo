@@ -11,6 +11,9 @@ use App\Models\User;
 class TasksController extends Controller
 {
 
+    /**
+     * Display task index page along with users task collection.
+     */
     public function index()
     {
         return view('pages.task.index', [
@@ -18,8 +21,12 @@ class TasksController extends Controller
         ]);
     }
 
+    /**
+     * Validate and store request.
+     */
     public function store(Request $request)
     {
+        // Validate request.
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
         ]);
@@ -30,6 +37,7 @@ class TasksController extends Controller
                 ->withErrors($validator);
         }
 
+        // Store task record.
         $task = new Task;
         $task->user_id = Auth::id();
         $task->name = $request->name;
@@ -40,19 +48,27 @@ class TasksController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Display task edit page along with the selected task info.
+     */
     public function edit($id)
     {
-        return view('pages.task.edit', ['task' => Task::findOrFail($id)]);
+        return view('pages.task.edit', ['task' => Task::find($id)]);
     }
 
+    /**
+     * Update task.
+     */
     public function update(Request $request, $id)
     {
         $task = Task::find($id);
 
+        // Check if the logged user own this task.
         if ($task->user_id != Auth::id()) {
             return redirect('/')->withErrors(['action_denied' => 'The action was denied.']);
         }
 
+        // Update user task.
         $task->name = $request->name;
         $task->complete = $request->complete == 'on' ? true : false;
         $task->important = $request->important == 'on' ? true : false;
@@ -62,6 +78,9 @@ class TasksController extends Controller
         return redirect('task');
     }
 
+    /**
+     * Update 'complete' field.
+     */
     public function mark($id)
     {
         $task = Task::find($id);
@@ -70,14 +89,19 @@ class TasksController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Delete task record.
+     */
     public function destroy($id)
     {
         $task = Task::find($id);
 
+        // Check if the logged user own this task.
         if ($task->user_id != Auth::id()) {
             return redirect('/')->withErrors(['action_denied' => 'The action was denied.']);
         }
 
+        // Delete record.
         $task->delete();
         return redirect('task');
     }

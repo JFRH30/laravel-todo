@@ -9,13 +9,17 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <form action="{{ url('task') }}" method="POST" class="form-inline">
+                <h5 class="card-title">
+                    Create task
+                </h5>
+                <hr>
+                <form action="{{ url('task') }}" method="POST">
                     {{ csrf_field() }}
-                    <div class="form-group mx-sm-3 mr-3">
-                        <label for="task-name" class="control-label mr-3"> Create task:</label>
+                    <div class="form-group">
+                        <label for="task-name" class="control-label">Task name</label>
                         <input type="text" name="name" id="task-name" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary"> Add Task</button>
+                    <button type="submit" class="btn btn-primary">Add task</button>
                 </form>
             </div>
         </div>
@@ -25,41 +29,44 @@
     {{-- Task list --}}
     <div class="col-md-6">
         <ul class="list-group">
-        @foreach ($tasks as $task)
-            <li class="list-group-item d-flex align-items-center">
-                {{-- Mark Complete --}}
-                <form action="{{ url('task/'.$task->id.'/mark') }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('PUT') }}
-                    <input
-                        type="checkbox"
-                        name="complete"
-                        onclick="this.form.submit()"
-                        class="mr-3" {{ $task->complete ? 'checked' : ''}}>
+            @foreach ($tasks as $task)
+                <li class="list-group-item d-flex align-items-center">
+                    {{-- Mark complete --}}
+                    <form action="{{ url('task/'.$task->id.'/mark') }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('PUT') }}
+                        <input
+                            type="checkbox"
+                            name="complete"
+                            onclick="this.form.submit()"
+                            class="mr-3" {{ $task->complete ? 'checked' : ''}}>
                     </form>
+                    {{-- End mark complete --}}
 
                     <div>
-                    {{-- Check if Important --}}
-
-                    @if ($task->important)
-                        <strong>{{ $task->name }}</strong>
+                        {{-- Check if important --}}
+                        @if ($task->important)
+                            <strong>{{ $task->name }}</strong>
                         @else
-                        {{ $task->name }}
+                            {{ $task->name }}
                         @endif
+                        {{-- End check if important --}}
                         <br>
-                    <small>Due Date: {{ $task->due_date ? $task->due_date->format('g:ia l jS F Y') : 'Not set'}}</small>
-                </div>
+                        <small>Due Date : {{ $task->due_date ? $task->due_date->format('g:ia l jS F Y') : 'Not set'}}</small>
+                    </div>
 
-                {{-- Edit Task --}}
-                <a href="{{ url('task/'.$task->id.'/edit') }}" class="btn btn-warning ml-auto mr-3">Edit</a>
+                    {{-- Edit task --}}
+                    <a href="{{ url('task/'.$task->id.'/edit') }}" class="btn btn-warning ml-auto mr-3">Edit</a>
+                    {{-- End edit task --}}
 
-                {{-- Delete Task --}}
-                <form action="{{ url('task/'.$task->id) }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE')}}
-                    <button type="submit" class="btn btn-outline-danger">Delete</button>
-                </form>
-            </li>
+                    {{-- Delete Task --}}
+                    <form action="{{ url('task/'.$task->id) }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE')}}
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                    </form>
+                    {{-- End delete task --}}
+                </li>
             @endforeach
         </ul>
     </div>

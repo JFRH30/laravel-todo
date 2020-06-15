@@ -36,6 +36,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get contacts associated to the user.
+     */
+    public function contacts()
+    {
+        return $this->hasMany('App\Models\Contact');
+    }
+
+    /**
      * Get tasks associated to the user.
      */
     public function tasks()
