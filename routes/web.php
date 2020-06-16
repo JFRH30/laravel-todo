@@ -40,16 +40,16 @@ Route::middleware('auth')->group(function() {
     // Appointment
     Route::resource('appointment', 'AppointmentController')->except([
         'create', 'show'
-    ]);
+    ])->middleware('owner:appointment');
 
     // Contact
     Route::resource('contact', 'ContactController')->except([
         'create', 'show'
-    ]);
+    ])->middleware('owner:contact');
 
     // Task
     Route::resource('task', 'TasksController')->except([
         'create', 'show'
-    ]);
-    Route::put('task/{task}/mark', 'TasksController@mark')->name('task.mark');
+    ])->middleware('owner:task');
+    Route::put('task/{task}/mark', 'TasksController@mark')->name('task.mark')->middleware('owner:task');
 });
