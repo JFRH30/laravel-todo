@@ -9,11 +9,17 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    /**
+     * Display register page.
+     */
     public function index()
     {
         return view('pages.register.index');
     }
 
+    /**
+     * Validate and store user info
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -38,6 +44,6 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return view('pages.login.index');
+        return redirect('login')->with('message', 'Registration successful!');
     }
 }

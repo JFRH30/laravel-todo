@@ -55,7 +55,7 @@
                         @endif
                         {{-- End check if important --}}
                         <br>
-                        <small>Due Date : {{ $task->due_date ? $task->due_date->format('g:ia l jS F Y') : 'Not set'}}</small>
+                        <small>Due Date : {{ $task->due_date ? $task->due_date->format('l, M. j Y | g:i a') : 'Not set'}}</small>
                     </div>
 
                     {{-- Edit task --}}

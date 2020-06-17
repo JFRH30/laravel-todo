@@ -62,20 +62,27 @@
         <h5>Appointment list with {{ $contact->first_name }} {{ $contact->last_name }}</h5>
         <ul class="list-group">
             @foreach ($appointments as $appointment)
-                <li class="list-group-item d-flex align-items-center">
-                    <div>
-                        {{ $appointment->title }}
-                        <br>
-                        <small>Location : {{$appointment->location}}</small>
-                    </div>
+            <li class="list-group-item d-flex align-items-center">
+                <div class="mr-auto">
+                    {{ $appointment->title }}
+                    <br>
+                    <small>Location : {{$appointment->location}}</small>
+                    <br>
+                    <small>Date : {{ $appointment->date_start->format('l, M. j Y') }} </small>
+                </div>
 
-                    <div>
-                        {{-- <small>Date {{ $appointment->date_start->diffForHumans($appointment->date_end) }} </small> --}}
-                        {{-- <small>Date {{ $appointment->date_end }} </small> --}}
-                        <small>Start {{ $appointment->time_start->diffInHours($appointment->time_end) }} </small>
-                        <small>End {{ $appointment->time_end }} </small>
-                    </div>
-                </li>
+                {{-- Edit appointment --}}
+                <a href="{{ url('appointment/'.$appointment->id.'/edit') }}" class="btn btn-warning mr-1">Edit</a>
+                {{-- End edit appointment --}}
+
+                {{-- Delete appointment --}}
+                <form action="{{ url('appointment/'.$appointment->id) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE')}}
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+                {{-- End delete appointment --}}
+            </li>
             @endforeach
         </ul>
     </div>

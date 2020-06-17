@@ -9,7 +9,7 @@
                 Update task
             </h5>
             <hr>
-            <form action="{{ url('task/'.$task->id.'/update') }}" method="POST">
+            <form action="{{ url('task/'.$task->id) }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('PUT')}}
 

@@ -1,11 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.pre-login')
+
+@section('title', 'Register')
 
 @section('content')
-    <div class="card offset-3 col-6 px-0">
-        <div class="card-header">
-            Register
-        </div>
+<div class="col-12 col-sm-6 col-md-3">
+    <div class="card">
         <div class="card-body">
+            <h5 class="card-title">Register</h5>
             <form action="{{ url('register') }}" method="POST">
                 {{ csrf_field() }}
 
@@ -36,10 +37,13 @@
                     <input type="password" name="password" id="password" class="form-control" placeholder="Password">
                 </div>
 
+                <hr>
+
                 <button type="submit" class="btn btn-primary">Register</button>
 
-                <a href="{{ url('/') }}" class="btn btn-outline-danger">Back</a>
+                <a href="{{ url('login') }}" class="btn btn-outline-danger">Back</a>
             </form>
         </div>
     </div>
+</div>
 @endsection

@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 
 // Pre-Login Routes
-Route::get('/', 'PagesController@showWelcome')->name('welcome');
+Route::get('/', function() {
+    return redirect()->route('login');
+});
 Route::middleware('guest')->group(function() {
 
     // Login

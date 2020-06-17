@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercise: Todo App</title>
+    <title>
+        Exercise: Todo || @yield('title', 'App')
+    </title>
 
     {{-- Bootstrap CSS--}}
     <link
@@ -16,11 +18,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
 </head>
 <body>
-    @include('layouts.navigation')
-    <div class="container">
-        <h1 class="my-md-5 my-3">
-            @yield('title', 'Title')
-        </h1>
+    <div class="d-flex flex-md-column align-items-center justify-content-center vh-100">
         @include('messages.success')
         @include('messages.error')
         @yield('content', 'Page content here')
