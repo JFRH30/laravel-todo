@@ -58,6 +58,19 @@ class ContactController extends Controller
     }
 
     /**
+     * Display appointment page along contact info.
+     */
+    public function appointment($id)
+    {
+        $contact = Contact::find($id);
+
+        return view('pages.contact.appointment', [
+            'appointments' => $contact->appointments()->orderBy('date_start', 'asc')->get(),
+            'contact' => $contact,
+        ]);
+    }
+
+    /**
      * Display contact edit page along with selected contact info.
      */
     public function edit($id)
@@ -85,11 +98,8 @@ class ContactController extends Controller
             }
         }
 
-        // Check if the logged user own this contact.
-        if ($contact->user_id != Auth::id()) {
-            return redirect('contact')
-                ->withErrors(['action_denied' => 'The action was denied.']);
-        }
+        // Run check
+        $this->contactOwner($contact);
 
         // Update contact
         $contact->first_name = $request->first_name;
@@ -107,14 +117,22 @@ class ContactController extends Controller
     {
         $contact = Contact::find($id);
 
-        // Check if the logged user own this contact.
-        if ($contact->user_id != Auth::id()) {
-            return redirect('contact')
-                ->withErrors(['action_denied' => 'The action was denied.']);
-        }
+        // Run check
+        $this->contactOwner($contact);
 
         // Delete record.
         $contact->delete();
         return redirect()->back();
+    }
+
+    /**
+     * Check if the logged user own this contact.
+     */
+    private function contactOwner($contact)
+    {
+        if ($contact->user_id != Auth::id()) {
+            return redirect('home')
+                ->withErrors(['action_denied' => 'The action was denied.']);
+        }
     }
 }

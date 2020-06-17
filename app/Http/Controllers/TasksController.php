@@ -63,10 +63,8 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
-        // Check if the logged user own this task.
-        if ($task->user_id != Auth::id()) {
-            return redirect('/')->withErrors(['action_denied' => 'The action was denied.']);
-        }
+        // Run check
+        $this->taskOwner($task);
 
         // Update user task.
         $task->name = $request->name;
@@ -95,14 +93,20 @@ class TasksController extends Controller
     public function destroy($id)
     {
         $task = Task::find($id);
-
-        // Check if the logged user own this task.
-        if ($task->user_id != Auth::id()) {
-            return redirect('/')->withErrors(['action_denied' => 'The action was denied.']);
-        }
+        // Run check
+        $this->taskOwner($task);
 
         // Delete record.
         $task->delete();
         return redirect('task');
+    }
+
+    /**
+     * Check if the logged user own this task.
+     */
+    private function taskOwner($task) {
+        if ($task->user_id != Auth::id()) {
+            return redirect('home')->withErrors(['action_denied' => 'The action was denied.']);
+        }
     }
 }

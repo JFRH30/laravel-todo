@@ -44,10 +44,18 @@ class User extends Authenticatable
     }
 
     /**
-     * Get tasks associated to the user.
+     * Get tasks associated with the user.
      */
     public function tasks()
     {
         return $this->hasMany('App\Models\Task');
+    }
+
+    /**
+     * Get appointments associated with the contact.
+     */
+    public function appointments()
+    {
+        return $this->hasMany('App\Models\Appointment');
     }
 }

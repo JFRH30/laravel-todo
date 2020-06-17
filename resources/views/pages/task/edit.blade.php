@@ -3,7 +3,7 @@
 @section('title', 'Update task')
 
 @section('content')
-    <div class="card col-12 col-md-6 offset-md-3">
+    <div class="card col-md-6 offset-md-3">
         <div class="card-body">
             <h5 class="card-title">
                 Update task
@@ -12,6 +12,7 @@
             <form action="{{ url('task/'.$task->id.'/update') }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('PUT')}}
+
                 <div class="form-group">
                     <label for="task-name" class="control-label">Task name:</label>
                     <input type="text" name="name" id="task-name" class="form-control" value="{{ $task->name }}">
@@ -31,6 +32,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Update Task</button>
+
                 <a href="{{ url('task') }}" class="btn btn-outline-danger">Cancel</a>
             </form>
         </div>

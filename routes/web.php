@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('contact', 'ContactController')->except([
         'create', 'show'
     ])->middleware('owner:contact');
+    Route::get('contact/{contact}/appointment', 'ContactController@appointment')->name('contact.appointment')->middleware('owner:contact');
 
     // Task
     Route::resource('task', 'TasksController')->except([

@@ -18,7 +18,7 @@
 <body>
     @include('layouts.navigation')
     <div class="container">
-        <h1>
+        <h1 class="my-md-5 my-3">
             @yield('title', 'Title')
         </h1>
         @include('error.alert')

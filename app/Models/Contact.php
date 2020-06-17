@@ -25,4 +25,12 @@ class Contact extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    /**
+     * Get appointments associated with the contact.
+     */
+    public function appointments()
+    {
+        return $this->hasMany('App\Models\Appointment');
+    }
 }
