@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercise: Todo App</title>
+    <title>Exercise: Todo | @yield('title', 'Title')</title>
 
     {{-- Bootstrap CSS--}}
     <link
@@ -17,10 +17,11 @@
 </head>
 <body>
     @include('layouts.navigation')
-    <div class="container">
-        <h1 class="my-md-5 my-3">
+    <div class="container mt-5">
+        <h2>
             @yield('title', 'Title')
-        </h1>
+        </h2>
+        <hr>
         @include('messages.success')
         @include('messages.error')
         @yield('content', 'Page content here')
@@ -39,6 +40,13 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+
+    {{-- Enable tooltip --}}
+    <script type="text/javascript">
+        $('document').ready(function(){
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
     {{-- JS --}}
     <style src="{{ URL::asset('js/app.js') }}"></style>

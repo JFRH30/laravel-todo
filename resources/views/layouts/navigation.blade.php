@@ -1,7 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
         <div class="nav-header">
-            <span class="navbar-brand h1">Exercise Project</span>
+            <a href="{{ url('home') }}"  class="navbar-brand h1">
+                <span>
+                    Exercise Project
+                </span>
+            </a>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#login-nav" aria-controls="login-nav">
@@ -9,32 +13,25 @@
         </button>
 
         <div class="collapse navbar-collapse" id="login-nav">
-
             <ul class="navbar-nav ml-auto">
-                @if (!Auth::check())
                 <li class="nav-item">
-                    <a href="{{ url('login') }}" class="nav-link">LOGIN</a>
+                    <a href="{{ url('appointment') }}" class="nav-link">Appointment</a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="{{ url('register') }}" class="nav-link">REGISTER</a>
+                    <a href="{{ url('contact') }}" class="nav-link">Contacts</a>
                 </li>
-            @else
+
                 <li class="nav-item">
-                    <a href="{{ url('appointment') }}" class="nav-link">APPOINTMENT</a>
+                    <a href="{{ url('task') }}" class="nav-link">Task list</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url('contact') }}" class="nav-link">CONTACTS</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('task') }}" class="nav-link">TODO LIST</a>
-                </li>
+
                 <li class="nav-item">
                     <form id="logout-form" action="{{ url('logout') }}" method="POST">
                         {{ csrf_field() }}
-                        <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit()" class="nav-link">LOGOUT</a>
+                        <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit()" class="nav-link">Logout</a>
                     </form>
                 </li>
-            @endif
             </ul>
         </div>
     </div>

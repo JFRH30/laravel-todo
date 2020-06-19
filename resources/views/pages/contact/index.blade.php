@@ -41,7 +41,10 @@
 
     {{-- Contact list --}}
     <div class="col-md-6">
-        <h5>Contact list</h5>
+        @if (count($contacts)>0)
+            <h5>Contact list</h5>
+        @endif
+
         <ul class="list-group">
             @foreach ($contacts as $contact)
                 <li class="list-group-item d-flex align-items-center">
@@ -52,18 +55,24 @@
                     </div>
 
                     {{-- Create appointment --}}
-                    <a href="{{ url('contact/'.$contact->id.'/appointment') }}" class="btn btn-success ml-auto mr-1">Appointment</a>
+                    <a href="{{ url('contact/'.$contact->id.'/appointment') }}" class="btn btn-success ml-auto mr-1"  data-toggle="tooltip" data-placement="top" title="Appointment">
+                        <i class="far fa-handshake"></i>
+                    </a>
                     {{-- End create appointment --}}
 
                     {{-- Edit contact --}}
-                    <a href="{{ url('contact/'.$contact->id.'/edit') }}" class="btn btn-warning mr-1">Edit</a>
+                    <a href="{{ url('contact/'.$contact->id.'/edit') }}" class="btn btn-info mr-1"  data-toggle="tooltip" data-placement="top" title="Edit">
+                        <i class="far fa-edit"></i>
+                    </a>
                     {{-- End edit contact --}}
 
                     {{-- Delete contact --}}
                     <form action="{{ url('contact/'.$contact->id) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE')}}
-                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        <button type="submit" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
                     </form>
                     {{-- End delete contact --}}
                 </li>

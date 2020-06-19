@@ -32,16 +32,9 @@
                     <textarea name="location" id="location" class="form-control" rows="3">{{ $appointment->location }}</textarea>
                 </div>
 
-                <div class="form-group row">
-                    <div class="col">
-                        <label for="date-start">Date start</label>
-                        <input type="date" name="date_start" id="date-start" class="form-control"  value="{{ $appointment->date_start->toDateString() }}">
-                    </div>
-
-                    <div class="col">
-                        <label for="date-end">Date end</label>
-                        <input type="date" name="date_end" id="date-end" class="form-control"  value="{{ $appointment->date_end->toDateString() }}">
-                    </div>
+                <div class="form-group">
+                    <label for="date-start">Date start</label>
+                    <input type="date" name="date_start" id="date-start" class="form-control"  value="{{ $appointment->date_start->toDateString() }}">
                 </div>
 
                 <div class="form-group row">

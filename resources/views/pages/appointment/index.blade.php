@@ -33,16 +33,9 @@
                         <textarea name="location" id="location" class="form-control" rows="3"></textarea>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col">
-                            <label for="date-start">Date start</label>
-                            <input type="date" name="date_start" id="date-start" class="form-control">
-                        </div>
-
-                        <div class="col">
-                            <label for="date-end">Date end</label>
-                            <input type="date" name="date_end" id="date-end" class="form-control">
-                        </div>
+                    <div class="form-group">
+                        <label for="date-start">Date start</label>
+                        <input type="date" name="date_start" id="date-start" class="form-control">
                     </div>
 
                     <div class="form-group row">
@@ -66,27 +59,39 @@
 
     {{-- Appointment list --}}
     <div class="col-md-6">
-        <h5>Appointment list</h5>
+        @if (count($appointments)>0)
+            <h5>Appointment list</h5>
+        @endif
+
         <ul class="list-group">
             @foreach ($appointments as $appointment)
                 <li class="list-group-item d-flex align-items-center">
                     <div class="mr-auto">
                         {{ $appointment->title }} with {{ $appointment->contact->last_name }} {{ $appointment->contact->first_name }}
                         <br>
-                        <small>Location : {{$appointment->location}}</small>
+                        <small>
+                            <strong>Location : </strong>{{$appointment->location}}</small>
                         <br>
-                        <small>Date : {{ $appointment->date_start->format('l, M. j Y') }} </small>
+                        <small>
+                            <strong>Date : </strong>{{ $appointment->date_start->format('l, M. j Y') }}
+                            <strong class="ml-2">Start : </strong>{{ $appointment->time_start->format('g:i a') }}
+                            <strong>End : </strong>{{ $appointment->time_end->format('g:i a') }}
+                        </small>
                     </div>
 
                     {{-- Edit appointment --}}
-                    <a href="{{ url('appointment/'.$appointment->id.'/edit') }}" class="btn btn-warning mr-1">Edit</a>
+                    <a href="{{ url('appointment/'.$appointment->id.'/edit') }}" class="btn btn-info mr-1" data-toggle="tooltip" data-placement="top" title="Edit">
+                        <i class="far fa-edit"></i>
+                    </a>
                     {{-- End edit appointment --}}
 
                     {{-- Delete appointment --}}
                     <form action="{{ url('appointment/'.$appointment->id) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE')}}
-                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        <button type="submit" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
                     </form>
                     {{-- End delete appointment --}}
                 </li>

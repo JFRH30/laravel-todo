@@ -16,8 +16,13 @@ class TasksController extends Controller
      */
     public function index()
     {
+        $user = User::find(Auth::id());
+        $tasks_wdate = $user->tasks()->whereNotNull('due_date')->orderBy('due_date', 'asc')->get();
+        $tasks_wodate = $user->tasks()->whereNull('due_date')->orderBy('created_at', 'desc')->get();
+
         return view('pages.task.index', [
-            'tasks' => User::find(Auth::id())->tasks()->orderBy('due_date', 'desc')->orderBy('created_at', 'desc')->get()
+            'tasks_wdate' => $tasks_wdate,
+            'tasks_wodate' => $tasks_wodate,
         ]);
     }
 

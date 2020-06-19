@@ -34,7 +34,6 @@ class AppointmentController extends Controller
             'title' => 'required|max:255',
             'location' => 'required',
             'date_start' => 'required',
-            'date_end' => 'required',
             'time_start' => 'required',
             'time_end' => 'required'
         ]);
@@ -59,7 +58,6 @@ class AppointmentController extends Controller
         $appointment->title = $request->title;
         $appointment->location = $request->location;
         $appointment->date_start = $request->date_start;
-        $appointment->date_end = $request->date_end;
         $appointment->time_start = $request->time_start;
         $appointment->time_end = $request->time_end;
         $appointment->save();
@@ -96,7 +94,6 @@ class AppointmentController extends Controller
         $appointment->title = $request->title;
         $appointment->location = $request->location;
         $appointment->date_start = $request->date_start;
-        $appointment->date_end = $request->date_end;
         $appointment->time_start = $request->time_start;
         $appointment->time_end = $request->time_end;
         $appointment->save();
